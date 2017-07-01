@@ -29,8 +29,8 @@ public class DBConfig
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
-		dataSource.setUsername("venky");
-		dataSource.setPassword("venky");
+		dataSource.setUsername("ramesh");
+		dataSource.setPassword("ramesh");
 
 		System.out.println("DataBase is connected.........!");
 		return dataSource;
