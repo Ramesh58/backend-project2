@@ -1,9 +1,5 @@
 package com.niit.controller;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.dao.UsersDao;
 import com.niit.model.Users;
 import com.niit.model.Error;
+
+
 
 @RestController
 public class UserController 
@@ -27,16 +24,15 @@ public class UserController
     
     private UsersDao usersDao;
     
-    @RequestMapping(value="/registration",method=RequestMethod.POST)
-    
-    public ResponseEntity<Void> createUser(@RequestBody Users user) {
+    @RequestMapping(value="/register",method=RequestMethod.POST)
+   public ResponseEntity<Void> createUser(@RequestBody Users user) {
         System.out.println("Creating User " + user.getFirstname());
  
  
         usersDao.registration(user);
  
         HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+        return new ResponseEntity<Void>(headers, HttpStatus.OK);
     }
  
 

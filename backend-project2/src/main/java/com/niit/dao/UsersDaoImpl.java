@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.niit.model.Users;
+
 @Repository
 public class UsersDaoImpl implements UsersDao 
 {

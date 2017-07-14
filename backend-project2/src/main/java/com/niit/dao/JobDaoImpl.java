@@ -27,8 +27,17 @@ public class JobDaoImpl implements JobDao
 	{
 		Session session=sessionFactory.openSession();
 		Query query=session.createQuery("from Job");
-		
-		return null;
+		List<Job> jobs=query.list();
+		session.close();
+		return jobs;
+	}
+
+	public Job getJobById(int id) 
+	{
+		Session session=sessionFactory.openSession();
+		Job job=(Job)session.get(Job.class, id);
+		session.close();
+		return job;
 	}
 
 }

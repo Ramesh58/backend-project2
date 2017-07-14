@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -65,4 +66,17 @@ public class JobController
 		List<Job> jobs=jobDao.getAllJobs();
 		return new ResponseEntity<List<Job>>(jobs,HttpStatus.OK);	
 	}
+	
+	@RequestMapping(value="/getjobbyid/{id}",method=RequestMethod.GET)
+	public ResponseEntity<?> getJobById(@PathVariable int id,HttpSession session)
+	{
+		Users users =(Users)session.getAttribute("user");
+		if(users==null)
+		{
+			Error error=new Error(3,"UnAuthorized user");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+	Job job=jobDao.getJobById(id);
+	return new ResponseEntity<Job>(job,HttpStatus.OK);
+}
 }

@@ -11,12 +11,20 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 
+import com.niit.dao.BlogPostDao;
+import com.niit.dao.BlogPostDaoImpl;
+import com.niit.dao.FriendDao;
+import com.niit.dao.FriendDaoImpl;
 import com.niit.dao.JobDao;
 import com.niit.dao.JobDaoImpl;
 import com.niit.dao.UsersDao;
 import com.niit.dao.UsersDaoImpl;
+import com.niit.model.BlogComment;
+import com.niit.model.BlogPost;
+import com.niit.model.Friend;
 import com.niit.model.Job;
 import com.niit.model.Users;
+
 
 
 
@@ -55,6 +63,10 @@ public class DBConfig
 
 		sessionBuilder.addAnnotatedClasses(Users.class);
 		 sessionBuilder.addAnnotatedClasses(Job.class);
+		 sessionBuilder.addAnnotatedClasses(BlogPost.class);
+		 sessionBuilder.addAnnotatedClasses(BlogComment.class);
+		 sessionBuilder.addAnnotatedClasses(Friend.class);
+		 
 		/*  sessionBuilder.addAnnotatedClasses(Blog.class);
 		  sessionBuilder.addAnnotatedClasses(Friend.class);
 		  sessionBuilder.addAnnotatedClasses(Job.class);
@@ -87,6 +99,19 @@ public class DBConfig
 	public JobDao getjobDAO(SessionFactory sessionFactory){
 		
 		return new JobDaoImpl();
+	}
+	@Autowired
+	@Bean(name="blogPostDao")
+	public BlogPostDao getblogPostDAO(SessionFactory sessionFactory)
+	{
+		
+		return new BlogPostDaoImpl();
+	}
+	@Autowired
+	@Bean(name="friendDao")
+	public FriendDao getfriendDao(SessionFactory sessionFactory){
+		
+		return new FriendDaoImpl();
 	}
 
 	
